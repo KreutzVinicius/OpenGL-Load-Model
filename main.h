@@ -287,11 +287,11 @@ class Model {
                     }
                 }
             } else if (line[0] == 'm' && line[1] == 't') {
-                sscanf(line.c_str(), "mtllib %s", &str);
+                sscanf(line.c_str(), "mtllib %s", str);
                 std::string file = prefix + str;
                 load_material(file.c_str());
             } else if (line[0] == 'u' && line[1] == 's') {
-                sscanf(line.c_str(), "usemtl %s", &str);
+                sscanf(line.c_str(), "usemtl %s", str);
                 std::string material = str;
                 if (map_material.find(material) != map_material.end())
                     faces.push_back(Face(-1, NULL, NULL, map_material[material]));
@@ -335,13 +335,6 @@ class Model {
                 glEnable(GL_LIGHTING);
         }
         glEndList();
-
-        printf("Model: %s\n", filename);
-        printf("Vertices: %d\n", vertices.size());
-        printf("Texcoords: %d\n", texcoords.size());
-        printf("Normals: %d\n", normals.size());
-        printf("Faces: %d\n", faces.size());
-        printf("Materials: %d\n", materials.size());
 
         sum_x /= vertices.size();
         sum_y /= vertices.size();
